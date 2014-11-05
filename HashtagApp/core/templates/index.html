@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Facebook's Hashtag App</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="{{ STATIC_URL }}css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+	<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a href="/" class="navbar-brand">Facebook's Hashtag App</a>
+		</div>
+		<nav class="collapse navbar-collapse" role="navigation">
+		  <ul class="nav navbar-nav">
+			<li>
+			  <a href="#">#{{ hashtag }}</a>
+			</li>
+		  </ul>
+		  <ul class="nav navbar-right navbar-nav">
+			<form action = "/" method = "POST" class="navbar-form navbar-left">{% csrf_token %}
+      			<input type="text" class="form-control col-lg-8" placeholder="Search" name="hashtag">
+			</form>
+		  </ul>
+		</nav>
+	  </div>
+	</header>
+
+	<div class="container">
+	  <div class="row">
+		
+		<div class="col-md-12"> 
+		  
+		  <div class="panel">
+			<div class="panel-body">
+			  
+			  <!--/stories-->
+			  {% for post in posts %}
+			  <div class="row">    
+				<br>
+				<div class="col-md-2 col-sm-3 text-center">
+				  <a class="story-title" href="#"><img alt="" src="http://graph.facebook.com/{{ post.id }}/picture?type=large" style="width:100px;height:100px" class="img-circle"></a>
+				  <p>{{ post.name }}</p>
+				</div>
+				<div class="col-md-10 col-sm-9">
+				  <h4>{{ post.description }}</h4>
+				  <div class="row">
+					<div class="col-xs-9">
+					  <small style="font-family:courier,'new courier';" class="text-muted">{{ post.time }}  • <a href="#" class="text-muted">Mais Detalhes</a></small>
+					  </h4></div>
+					<div class="col-xs-3"></div>
+				  </div>
+				  <br><br>
+				</div>
+			  </div>
+			  <hr>
+			  {% endfor %}
+			  <!--/stories-->
+
+			</div>
+		  </div>								
+														  
+		</div><!--/col-12-->
+	  </div>
+	</div>
+
+	  <div class="container">
+		<div class="row">
+		  <div class="col-sm-6">
+			  <p class="pull-right"><a href="http://www.bootply.com">Bootply</a></p>      
+		  </div>
+		</div>
+	  </div>
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+	</body>
+</html>
